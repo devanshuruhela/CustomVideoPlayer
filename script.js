@@ -36,10 +36,19 @@ function playandpause()
   }
 }
 
-
+// Displaying time 
+function displaytime(time)
+{
+  const minute = Math.floor(time/60);
+  let second = Math.floor(time%60);
+  second = second >9 ? second:`0${second}`;
+  return `${minute}:${second}`;
+}
 // Progress Bar //
 function updateprogress(){
   progressbar.style.width = `${(video.currentTime / video.duration) * 100}%`;
+  currenttime.textContent = `${displaytime(video.currentTime)}/`;
+  duration.textContent = `${displaytime(video.duration)}`
 }
 
 
