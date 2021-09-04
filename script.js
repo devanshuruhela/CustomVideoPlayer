@@ -38,7 +38,9 @@ function playandpause()
 
 
 // Progress Bar //
-
+function updateprogress(){
+  progressbar.style.width = `${(video.currentTime / video.duration) * 100}%`;
+}
 
 
 // Volume Controls //
@@ -56,3 +58,5 @@ function playandpause()
 playbtn.addEventListener('click' , playandpause);
 video.addEventListener('click' , playandpause);
 video.addEventListener('ended' , videoended);
+video.addEventListener('timeupdate' , updateprogress);
+video.addEventListener('canplay' , updateprogress);
