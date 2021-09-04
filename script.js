@@ -1,16 +1,16 @@
 const video = document.querySelector('video');
-const progressrange = document.getElementsByClassName('progress-range')
-const progressbar = document.getElementsByClassName("progress-bar");
+const progressrange = document.querySelector('.progress-range')
+const progressbar = document.querySelector(".progress-bar");
 const playbtn = document.getElementById('play-btn');
 const volumeicon = document.getElementById('volume-icon');
 
-const volumerange = document.getElementsByClassName("volume-range");
-const volumebar = document.getElementsByClassName("volume-bar");
+const volumerange = document.querySelector(".volume-range");
+const volumebar = document.querySelector(".volume-bar");
 
-const currenttime = document.getElementsByClassName('time-elapsed');
-const duration = document.getElementsByClassName('time-duration');
+const currenttime = document.querySelector('.time-elapsed');
+const duration = document.querySelector('.time-duration');
 
-const fullscreen = document.getElementsByClassName('fullscreen');
+const fullscreen = document.querySelector('.fullscreen');
 
 
 // Play & Pause //
