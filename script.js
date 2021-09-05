@@ -10,7 +10,11 @@ const volumebar = document.querySelector(".volume-bar");
 const currenttime = document.querySelector('.time-elapsed');
 const duration = document.querySelector('.time-duration');
 
+const speed = document.querySelector('.player-speed');
+
 const fullscreen = document.querySelector('.fullscreen');
+
+
 
 
 // Play & Pause //
@@ -60,6 +64,8 @@ function changeprogressbar(event)
 
 
 // Volume Controls //
+let lastvolume = 1;
+let volumeclass ='';
 function setvolume(event)
 {
   let volume = event.offsetX / volumerange.offsetWidth;
@@ -75,22 +81,45 @@ function setvolume(event)
   video.volume = volume;
   //setting valume icons
   volumeicon.className = '';
-  if (volume > 0.7)
+  if (volume > 0.6)
   {
     volumeicon.classList.add('fas' , 'fa-volume-up');
+    volumeclass = 'fa-volume-up'
   }
-  else if (volume < 0.7 && volume>0) {
+  if (volume < 0.6 && volume>0) {
       volumeicon.classList.add("fas", "fa-volume-down");
+     volumeclass = 'fa-volume-down'
     }
-  else if (volume === 0 ) {
+  if (volume === 0 ) {
         volumeicon.classList.add("fas", "fa-volume-mute");
+        volumeclass = 'fa-volume-mute'
       }
+      lastvolume = volume;
 }
-let lastvolume = 1;
 
-
+function mute()
+{
+   volumeicon.className = "";
+  if (video.volume>0.1)
+  {
+    lastvolume= video.volume;
+    video.volume =0 ;
+    volumebar.style.width = 0;
+    volumeicon.classList.add('fas' , 'fa-volume-mute');
+    volumeicon.setAttribute('title' , 'Unmute')
+  }
+  else{
+    video.volume = lastvolume;
+    volumebar.style.width = `${lastvolume * 100}%`;
+    volumeicon.classList.add('fas' , 'fa-volume-up');
+    volumeicon.setAttribute('title' , 'Mute')
+  }
+}
 // Change Playback Speed  //
-
+function changespeed()
+{
+  video.playbackRate = speed.value;
+}
 
 
 // Fullscree //
@@ -105,3 +134,6 @@ video.addEventListener('canplay' , updateprogress);
 progressrange.addEventListener('click' , changeprogressbar);
 
 volumerange.addEventListener('click' , setvolume);
+volumeicon.addEventListener('click' , mute);
+
+speed.addEventListener('change' , changespeed);
